@@ -1,0 +1,20 @@
+name: Trigger Power Automate Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  triggerFlow:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Trigger Power Automate Flow
+      run: |
+        curl -X POST https://make.powerautomate.com/environments/Default-358a41ff-46d9-49d3-a297-370d894eae6a/flows/fe0b297b-5f88-4e1e-aefc-7307136f25d7?v3=true \
+        -H "Content-Type: application/json" \
+        -d '{"data": "Trigger the flow with updated configuration"}'
